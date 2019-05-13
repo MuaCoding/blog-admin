@@ -10,7 +10,7 @@ import store from './store'; // 7. 引入 store，可以理解为 store 提供�
 class App extends Component {
 
   // 8.在 constructor 中通过 store.getState() 方法来获取数据，并赋值为 state
-  constructor(props){
+  constructor(props) {
     super(props);
 
     // 9. 尝试获取store.getState()
@@ -24,6 +24,13 @@ class App extends Component {
     this.handleStoreChange = this.handleStoreChange.bind(this);
     store.subscribe(this.handleStoreChange)
 
+
+    //  2.处理handleAddItem 方法
+    this.handleAddItem = this.handleAddItem.bind(this);
+
+    // 7.处理handleInputKeyUp方法
+    this.handleInputKeyUp = this.handleInputKeyUp(this)
+
   }
 
 
@@ -34,8 +41,13 @@ class App extends Component {
           <h1>todolist</h1>
         </div>
         <div className="todo-action">
-          <Input placeholder='todo' className="todo-input" value={this.state.inputValue} onChange={this.handleInputChange}/>
-          <Button className="todo-submit" type="primary">提交</Button>
+          <Input placeholder='todo'
+                 className="todo-input"
+                 value={this.state.inputValue}
+                 onChange={this.handleInputChange}
+                 onKeyUp={this.handleInputKeyUp}
+          />
+          <Button className="todo-submit" type="primary" onClick={this.handleAddItem}>提交</Button>
         </div>
 
         <div className="todo-list">
@@ -47,8 +59,8 @@ class App extends Component {
   };
 
   // 3.编写handleInputChange
-  handleInputChange(e){
-  //  4.通过action，将数据传递给store
+  handleInputChange(e) {
+    //  4.通过action，将数据传递给store
     const action = {
       type: 'change_input_value',
       value: e.target.value
@@ -58,9 +70,22 @@ class App extends Component {
   }
 
   // 8.在handleStoreChange 中处理数据
-  handleStoreChange(){
+  handleStoreChange() {
     this.setState(store.getState());
   }
+
+//  3.编写handleAddItem 方法
+  handleAddItem() {
+    const action = {
+      type: 'add_todo_item'
+    }
+    store.dispatch(action)
+  }
+
+//  8.为input 的keyup 方法handleInputKeyUp绑定handleAddItem
+
+
 }
+
 
 export default App;
