@@ -5,9 +5,10 @@ import './App.css';
 import 'antd/dist/antd.css'; // 2. 引入 antd 的样式
 
 import store from './store'; // 7. 引入 store，可以理解为 store 提供数据。./store 是 ./store/index.js 的缩写
-import {getInputChangeAction, getAddItemAction, getItemDeleteAction, initListAction} from './store/actionCreators';
+import {getInputChangeAction, getAddItemAction, getItemDeleteAction, getList} from './store/actionCreators';
 import ListGroup from './ListGroup';
-import axios from 'axios'; // 1. 引入 axios
+
+import Header from './components/common/header';
 
 
 class App extends Component {
@@ -39,26 +40,20 @@ class App extends Component {
 
   render() {
     return (
-      <ListGroup
-        inputValue={this.state.inputValue}
-        list={this.state.list}
-        handleInputChange={this.handleInputChange}
-        handleInputKeyUp={this.handleInputKeyUp}
-        handleAddItem={this.handleAddItem}
-        handleDeleteItem={this.handleDeleteItem}
-      />
+
+      <div className="App">
+        <Header />
+      </div>
     );
   };
 
   // 2. 在 componentDidMount() 中进行 axios 接口调用
   componentDidMount() {
-    axios.get('https://www.easy-mock.com/mock/5ca803587e5a246db3d100cb/todolist').then((res) => {
-      console.log(res.data.todolist);
-      // 3. 将接口数据 dispatch 到 action 中，所以需要先前往 actionCreators.js 中创建 action
-      // 8. 创建 action 并 dispatch 到 reducer.js 中
-      const action = initListAction(res.data.todolist);
-      store.dispatch(action);
-    })
+
+    // 5. 在 componentDidMount 中调用 getTodoList。如果我们没使用 redux-thunk，我们只能使用对象，但是现在我们可以使用函数了。
+    const action = getList();
+    // 6. 当我们 dispatch 了 action 的时候，我们就调用了步骤 1 的 getList()，从而获取了数据
+    store.dispatch(action);
   }
 
   // 3.编写handleInputChange
