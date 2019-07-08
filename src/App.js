@@ -1,13 +1,15 @@
 import React, {Component} from 'react';
 // import logo from './logo.svg';
 import {Provider} from 'react-redux';
-import './App.css';
+// import './App.css';
 // import {Input, Button, List} from 'antd'; // 1. 引入 antd 的列表
 import 'antd/dist/antd.css'; // 2. 引入 antd 的样式
 
 import store from './store'; // 7. 引入 store，可以理解为 store 提供数据。./store 是 ./store/index.js 的缩写
 
 import Header from './common/header';
+
+import Todo from '../src/components/todo/Todo';
 
 
 class App extends Component {
@@ -26,7 +28,8 @@ class App extends Component {
     return (
 
       <Provider store={store} className="App">
-        <Header/>
+				{/* <Header/> */}
+				<Todo />
       </Provider>
     );
   };
