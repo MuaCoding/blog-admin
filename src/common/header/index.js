@@ -9,6 +9,7 @@ import { actionCreators } from "./store";
 import logo from "../../assets/images/logo.png";
 
 const Header = props => {
+
 	return (
 		<header>
 			<div className="header-left">

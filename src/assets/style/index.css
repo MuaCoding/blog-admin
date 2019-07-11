@@ -9,29 +9,62 @@ body {
 }
 
 
-.wrap{
-	width: 500px;
-	margin: 50px auto;
-}
-
-ul,li{
-	list-style: none;
-}
-
-h2{
-	margin-top: 15px;
-}
-
-li{
-	margin-top: 15px;
+ul,
+li {
+  list-style: none;
 }
 
 
-.header{
-	line-height: 34px;
-	text-align: center;
+/*
+*
+*
+*/
+
+.item .item-cate {
+  text-align: center;
+  padding: .5rem;
 }
 
-.header  a{
-	margin: 10px;
+.item .item-list {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 .5rem;
+}
+
+.item .item-list li {
+  width: 33.3%;
+  padding: .5rem;
+  box-sizing: border-box;
+}
+
+
+.item .item-list li a {
+
+  text-decoration: none;
+
+  color: #555;
+}
+
+.item .item-list li .inner {
+  background: #fff;
+  width: 100%;
+  border-radius: .5rem;
+  overflow: hidden;
+}
+
+.item .item-list li .inner img {
+	width: 100%;
+	height: 95px;
+}
+
+.item .item-list li .inner p {
+  padding: .2rem .5rem;
+}
+
+.item .item-list li .inner .title {
+  font-weight: bold;
+}
+
+.price {
+  color: red;
 }
