@@ -17,10 +17,9 @@ import Todo from "../src/components/todo/Todo";
 import Axios from "../src/components/common/Axios";
 
 
-import Home from './components/demo/Home'
-import News from './components/demo/News'
-import Product from './components/demo/Product'
-import Detail from './components/demo/Detail'
+
+
+import routes from './router/router'
 
 class App extends Component {
 	// 8.在 constructor 中通过 store.getState() 方法来获取数据，并赋值为 state
@@ -38,20 +37,33 @@ class App extends Component {
 
 
 	render() {
+
 		return (
-			// <Provider store={store} className="App">
-
-			// 	{
-			// 		this.state.flag ? <Axios title={this.state.title}/> :''
-			// 	}
-			// </Provider>
-
 			<Router>
 				<div>
-					<Route exact path="/" component={Home}></Route>
-					<Route path="/news" component={News}></Route>
-					<Route path="/product/:id" component={Product}></Route>
-					<Route path="/detail" component={Detail}></Route>
+
+					<header className="header">
+						<Link to="/"> 首页</Link>
+						<Link to="/user"> 用户页面</Link>
+					</header>
+
+					{
+						routes.map((route,key) =>{
+							if(route.exact) {
+								return <Route key={key} exact path={route.path}
+								render={props =>(
+									<route.component {...props} routes={route.routes}/>
+								)}
+								/>
+							}else{
+								return <Route key={key} path={route.path}
+								render={props =>(
+									<route.component {...props} routes={route.routes}/>
+								)}
+								/>
+							}
+						})
+					}
 				</div>
 			</Router>
 		);

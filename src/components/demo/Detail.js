@@ -13,7 +13,7 @@ class Detail extends Component {
 
 
 	queryData(id) {
-		var api = this.state.domain + "api/productcontent/" + id;
+		var api = this.state.domain + "api/productcontent?id=" + id;
 
 		axios
 			.get(api)
@@ -38,8 +38,10 @@ class Detail extends Component {
 
 	render() {
 		return (
-			<div>
-				我是详情组件
+			<div className="product">
+				<div className="image">
+					{/* <image /> */}
+				</div>
 			</div>
 		);
 	}

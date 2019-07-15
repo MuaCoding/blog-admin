@@ -68,3 +68,27 @@ li {
 .price {
   color: red;
 }
+
+.header a{
+	margin: 0 15px;
+}
+.content {
+	display: flex;
+	width: 100%;
+}
+
+.content .left{
+	width: 200px;
+	height: 500px;
+  background-color: #F7F7F7;
+}
+
+.content .right{
+	flex: 1;
+}
+
+.content .left a{
+	display: block;
+	padding: 15px;
+	text-align: center;
+}
